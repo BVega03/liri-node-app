@@ -3,6 +3,7 @@ require("dotenv").config();
 var axios = require("axios");
 var moment = require("moment");
 var keys = require("./keys");
+// var artist = require("node-bandsintown-api");
 var Spotify = require("node-spotify-api");
 var spotify = new Spotify(keys.spotify);
 var command = process.argv[2];
@@ -37,17 +38,27 @@ switch (command) {
     break;
 }
 
-function concertSearch() {
-  console.log("this is the concert search function");
+// function concertSearch() {
+//   console.log("this is the concert search function");
 
-  axios.get('https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp')
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
-};
+//   axios.get("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp")
+//     .then(function (response) {
+//       console.log(response);
+      // console.log("Name of the venue: " + response.data.name);
+      // console.log("Venue location: " + response.data.location);
+      // console.log("Date of the event: " + response.data.date);
+
+    // })
+    // This will search the Bands in Town Artist Events API ("https://rest.bandsintown.com/artists/" + artist + "/events?app_id=codingbootcamp") for an artist and render the following information about each event to the terminal:
+
+    // Name of the venue
+    // Venue location
+    // Date of the Event (use moment to format this as "MM/DD/YYYY")
+
+    // .catch(function (error) {
+    //   console.log(error);
+    // });
+// };
 
 function spotifySearch() {
   console.log("this is the Spotify search function");
@@ -63,10 +74,10 @@ function spotifySearch() {
 
     for (var i = 0; i < 3; i++) {
 
-      console.log("Song Name " + data.tracks.items[i].name);
-      console.log("Artist " + data.tracks.items[i].artists[0].name);
-      console.log("Album " + data.tracks.items[i].album.name);
-      console.log("Link to Album " + data.tracks.items[i].preview_url);
+      console.log("Song Name: " + data.tracks.items[i].name);
+      console.log("Artist: " + data.tracks.items[i].artists[0].name);
+      console.log("Album: " + data.tracks.items[i].album.name);
+      console.log("Link to Album: " + data.tracks.items[i].preview_url);
 
     }
 
@@ -77,15 +88,15 @@ function movieSearch() {
   console.log(searchTerm);
   axios.get('http://www.omdbapi.com/?t=' + searchTerm + '&apikey=1a9da948')
     .then(function (response) {
-      console.log(response);
-      console.log("Title " + data.Title);
-      // console.log("Year " + data.items[i].Year);
-      // console.log("IMDB Rating " + data.items[i].imdbRating);
-      // console.log("Rotten Tomatoes Rating " + data.items[i].Ratings);
-      // console.log("Country " + data.items[i].Country);
-      // console.log("Language " + data.items[i].Language);
-      // console.log("Plot " + data.items[i].Plot);
-      // console.log("Actors " + data.items[i].Actors);
+      // console.log(response);
+      console.log("Title: " + response.data.Title);
+      console.log("Year: " + response.data.Year);
+      console.log("IMDB Rating: " + response.data.imdbRating);
+      console.log("Rotten Tomatoes Rating: " + response.data.Ratings);
+      console.log("Country: " + response.data.Country);
+      console.log("Language: " + response.data.Language);
+      console.log("Plot:" + response.data.Plot);
+      console.log("Actors: " + response.data.Actors);
 
 
       // * Title of the movie.
